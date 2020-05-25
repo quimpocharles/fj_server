@@ -98,19 +98,21 @@ const resolvers = {
     },
 
     addToCart: (_, args) => {
+      console.log(args)
       const query = Member.findById(args.userId);
       return query
         .then((user) => {
           // console.log(user);
-          console.log(args);
+          // console.log(args);
 
           const newCartItem = {
             quantity: args.quantity,
             itemId: args.itemId,
+            categoryId : args.categoryId
           };
 
           for (let i = 0; i < user.cart.length; i++) {
-            if (user.cart[i].itemId == args.itemId) {
+            if (user.cart[i].itemId == args.itemId && user.cart[i].categoryId == args.categoryId ) {
               user.cart[i].quantity += args.quantity;
               user.save();
               return true;
@@ -235,10 +237,10 @@ const resolvers = {
     },
 
     logInMember: (_, args) => {
-      console.log("trying to log in...");
-      console.log(args);
+      // console.log("trying to log in...");
+      // console.log(args);
 
-      return Member.findOne({ username: args.username }).then((member) => {
+      return Member.findOne({ email: args.email }).then((member) => {
         console.log(member);
         // username has no matches in our database
         if (member === null) {

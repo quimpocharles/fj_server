@@ -37,6 +37,10 @@ const MemberSchema = new Schema(
           type: Number,
           required: true,
         },
+        categoryId : {
+          type : String,
+          required: true
+        }
       },
     ],
   },

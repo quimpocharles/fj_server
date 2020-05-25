@@ -47,6 +47,7 @@ const typeDefs = gql`
   type CartType {
     quantity: Int!
     itemId: String
+    categoryId : String
   }
 
   type TeamType {
@@ -86,7 +87,7 @@ const typeDefs = gql`
       image_location: String
     ): CategoryType
 
-    addToCart(userId: String, itemId: String, quantity: Int): Boolean
+    addToCart(userId: String, itemId: String, quantity: Int, categoryId : String): Boolean
 
     updateCartItem(userId: String, itemId: String, quantity: Int): Boolean
     deleteCartItem(userId: String, itemId: String): Boolean
@@ -108,7 +109,7 @@ const typeDefs = gql`
       position: String
     ): MemberType
 
-    logInMember(username: String, password: String): MemberType
+    logInMember(email: String, password: String): MemberType
 
     createTransaction(
       description: String
